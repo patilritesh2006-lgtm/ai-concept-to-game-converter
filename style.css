@@ -1,15 +1,80 @@
+* {
+  box-sizing: border-box;
+  font-family: "Inter", "Poppins", sans-serif;
+}
+
 body {
-  font-family: Inter, Arial, sans-serif;
-  background: #f5f9ff;
+  margin: 0;
+  padding: 0;
+  background: #f5f7fb;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px;
+}
+
+h1 {
   text-align: center;
-  padding-top: 60px;
+  font-size: 2.4rem;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
 }
 
 button {
+  padding: 12px 20px;
   background: #2563eb;
   color: white;
-  padding: 12px 28px;
-  border-radius: 10px;
   border: none;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
 }
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.output-card {
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 20px;
+}
+
+.output-card h2 {
+  margin-top: 0;
+  color: #2563eb;
+}
+
+.output-card ul {
+  padding-left: 20px;
+}
+
+.output-card li {
+  margin-bottom: 8px;
+}
+
