@@ -1,27 +1,30 @@
 from fastapi import FastAPI
-from schemas import ConceptRequest
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 from game_engine import build_game
 
 app = FastAPI(title="AI Concept-to-Game Converter")
 
+# ✅ ADD THIS BLOCK (VERY IMPORTANT)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],   # allow GitHub Pages
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class ConceptRequest(BaseModel):
+    subject: str
+    concept: str
+    difficulty: str
+
 @app.post("/generate-game")
 def generate_game(data: ConceptRequest):
-    game = build_game(
-        subject=data.subject,
-        concept=data.concept,
-        difficulty=data.difficulty
-    )
     return {
-        "status": "success",
-        "generated_game": game
+        "generated_game": build_game(
+            data.subject,
+            data.concept,
+            data.difficulty
+        )
     }
-import os
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=int(os.environ.get("PORT", 10000))
-    )
-
