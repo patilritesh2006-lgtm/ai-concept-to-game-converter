@@ -37,6 +37,21 @@ async function generateGame() {
 
   } catch (error) {
     console.error(error);
-    output.textContent = "❌ Backend error. Check console.";
+   const game = data.generated_game;
+
+output.innerHTML = `
+  <h2>🎮 ${game.game_type}</h2>
+  <p><strong>🎯 Objective:</strong> ${game.objective}</p>
+
+  <h3>🧠 Rules</h3>
+  <ul>
+    ${game.rules.map(rule => `<li>${rule}</li>`).join("")}
+  </ul>
+
+  <h3>🏆 Scoring System</h3>
+  <p>✅ Correct Answer: <b>${game.scoring_system.correct}</b></p>
+  <p>❌ Incorrect Answer: <b>${game.scoring_system.incorrect}</b></p>
+`;
+
   }
 }
