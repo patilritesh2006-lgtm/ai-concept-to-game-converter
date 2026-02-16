@@ -1,69 +1,95 @@
-/* Prevent overflow issues */
+/* Reset */
 * {
   box-sizing: border-box;
-}
-
-body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Main Center Container */
+/* Page Background */
+body {
+  background: linear-gradient(135deg, #eef2f7, #dfe6f3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Main Wrapper */
 .container {
-  width: 95%;
+  width: 100%;
   max-width: 1400px;
-  margin: 60px auto;
-  text-align: center;
-}
-
-/* White Rectangle Card */
-.card {
-  background: white;
   padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* INPUT ROW FIX */
+/* White Card */
+.card {
+  background: #ffffff;
+  padding: 70px;
+  border-radius: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 40px;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Form Row */
 .form {
   display: flex;
   gap: 20px;
-  align-items: center;
   justify-content: center;
-  flex-wrap: wrap; /* Prevent overflow */
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Inputs */
 .form input {
-  padding: 15px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  min-width: 200px;
-  flex: 1;
-  max-width: 250px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid #d1d5db;
+  min-width: 220px;
+  max-width: 260px;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 /* Button */
 .form button {
-  padding: 15px 25px;
-  border-radius: 12px;
+  padding: 16px 28px;
+  border-radius: 14px;
   border: none;
-  background: #3b6df6;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
   color: white;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  white-space: nowrap; /* Prevent breaking */
+  transition: 0.3s ease;
 }
 
 .form button:hover {
-  background: #2f58d6;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
 }
 
-/* Output */
+/* Output Area */
 .output-card {
-  margin-top: 30px;
-  padding: 20px;
-  background: #f1f3f7;
-  border-radius: 15px;
+  margin-top: 40px;
+  padding: 30px;
+  background: #f8fafc;
+  border-radius: 20px;
+  min-height: 160px;
+  font-size: 15px;
+  overflow-x: auto;
 }
