@@ -1,18 +1,33 @@
-async function generateGame() {
-  const subject = document.getElementById("subject").value;
-  const concept = document.getElementById("concept").value;
-  const difficulty = document.getElementById("difficulty").value;
+async function startGame() {
+  const output = document.getElementById("output");
+  output.innerText = "⏳ Generating game using AI...";
 
-  const response = await fetch(
-    "https://ai-concept-to-game-converter-1.onrender.com/generate-game",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ subject, concept, difficulty })
+  try {
+    const response = await fetch(
+      "https://ai-concept-to-game-converter-1.onrender.com/generate-game",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject: "Physics",
+          concept: "Newton’s Laws of Motion",
+          difficulty: "High School"
+        })
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("HTTP error " + response.status);
     }
-  );
 
-  const data = await response.json();
-  document.getElementById("output").textContent =
-    JSON.stringify(data, null, 2);
+    const data = await response.json();
+
+    output.innerText =
+      "🎮 Game Type: " + data.generated_game.game_type + "\n" +
+      "🎯 Objective: " + data.generated_game.objective + "\n" +
+      "🧠 Rules: " + data.generated_game.rules.join(", ");
+  } catch (err) {
+    console.error(err);
+    output.innerText = "❌ Backend error — check console & backend logs.";
+  }
 }
