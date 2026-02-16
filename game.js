@@ -4,7 +4,7 @@ async function startGame() {
 
   try {
     const response = await fetch(
-      "https://YOUR-RENDER-URL.onrender.com/generate-game",
+      "https://ai-concept-to-game-converter-1.onrender.com",
       {
         method: "POST",
         headers: {
