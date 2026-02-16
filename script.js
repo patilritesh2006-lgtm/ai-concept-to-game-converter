@@ -1,33 +1,42 @@
-async function startGame() {
+async function generateGame() {
+  const subject = document.getElementById("subject").value;
+  const concept = document.getElementById("concept").value;
+  const difficulty = document.getElementById("difficulty").value;
+
   const output = document.getElementById("output");
-  output.innerText = "⏳ Generating game using AI...";
+  output.textContent = "⏳ Generating game...";
 
   try {
     const response = await fetch(
       "https://ai-concept-to-game-converter-1.onrender.com/generate-game",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
-          subject: "Physics",
-          concept: "Newton’s Laws of Motion",
-          difficulty: "High School"
+          subject: subject,
+          concept: concept,
+          difficulty: difficulty
         })
       }
     );
 
     if (!response.ok) {
-      throw new Error("HTTP error " + response.status);
+      throw new Error("Server error");
     }
 
     const data = await response.json();
 
-    output.innerText =
-      "🎮 Game Type: " + data.generated_game.game_type + "\n" +
-      "🎯 Objective: " + data.generated_game.objective + "\n" +
-      "🧠 Rules: " + data.generated_game.rules.join(", ");
-  } catch (err) {
-    console.error(err);
-    output.innerText = "❌ Backend error — check console & backend logs.";
+    output.textContent =
+      "🎮 Game Type: " + data.generated_game.game_type + "\n\n" +
+      "🎯 Objective: " + data.generated_game.objective + "\n\n" +
+      "🧠 Rules:\n- " + data.generated_game.rules.join("\n- ") + "\n\n" +
+      "🏆 Scoring:\nCorrect: " + data.generated_game.scoring_system.correct +
+      ", Incorrect: " + data.generated_game.scoring_system.incorrect;
+
+  } catch (error) {
+    console.error(error);
+    output.textContent = "❌ Backend error. Check console.";
   }
 }
