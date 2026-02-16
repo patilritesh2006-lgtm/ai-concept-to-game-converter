@@ -4,12 +4,10 @@ async function startGame() {
 
   try {
     const response = await fetch(
-      "https://ai-concept-to-game-converter-1.onrender.com",
+      "https://ai-concept-to-game-converter-1.onrender.com/generate-game",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           subject: "Physics",
           concept: "Newton’s Laws of Motion",
@@ -21,9 +19,11 @@ async function startGame() {
     const data = await response.json();
 
     output.innerText =
-      "🎮 Game Type: " + data.generated_game.game_type +
-      "\n🎯 Objective: " + data.generated_game.objective;
+      "🎮 Game Type: " + data.generated_game.game_type + "\n" +
+      "🎯 Objective: " + data.generated_game.objective +
+      "\n🧠 Rules: " + data.generated_game.rules.join(", ");
   } catch (err) {
-    output.innerText = "❌ Backend error. Is the server running?";
+    output.innerText = "❌ Backend error — check console & backend logs.";
+    console.error(err);
   }
 }
