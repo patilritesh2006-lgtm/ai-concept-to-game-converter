@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AI Concept to Game</title>
-  <link rel="stylesheet" href="style.css">
+  <title>AI Concept to Game Converter</title>
 </head>
 <body>
-  <h1>🎮 AI Concept-to-Game Converter</h1>
-  <p>Concept: Newton’s Laws of Motion</p>
+  <h1>AI Concept-to-Game Converter</h1>
 
-  <button onclick="startGame()">Start Game</button>
-  <p id="output"></p>
+  <input id="subject" placeholder="Subject" />
+  <input id="concept" placeholder="Concept" />
+  <input id="difficulty" placeholder="Difficulty" />
 
-  <script src="game.js"></script>
+  <button onclick="generateGame()">Generate Game</button>
+
+  <pre id="output"></pre>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
