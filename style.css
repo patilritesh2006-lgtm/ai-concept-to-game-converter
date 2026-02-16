@@ -1,0 +1,73 @@
+/* Prevent overflow issues */
+* {
+  box-sizing: border-box;
+}
+
+/* Page background */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+/* Main Center Container */
+.container {
+  width: 95%;
+  max-width: 1300px;     /* slightly bigger */
+  margin: 60px auto;
+  text-align: center;
+}
+
+/* White Rectangle Card */
+.card {
+  background: white;
+  padding: 50px;         /* more breathing space */
+  border-radius: 22px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* INPUT ROW */
+.form {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;       /* prevents overflow */
+}
+
+/* Inputs */
+.form input {
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  min-width: 200px;
+  max-width: 250px;
+  font-size: 15px;
+}
+
+/* Button */
+.form button {
+  padding: 15px 28px;
+  border-radius: 12px;
+  border: none;
+  background: #3b6df6;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.form button:hover {
+  background: #2f58d6;
+}
+
+/* Output */
+.output-card {
+  margin-top: 35px;
+  padding: 25px;
+  background: #f1f3f7;
+  border-radius: 16px;
+  min-height: 120px;
+  text-align: left;
+  overflow-x: auto;
+}
