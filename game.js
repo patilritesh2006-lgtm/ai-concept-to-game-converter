@@ -6,7 +6,7 @@ async function generateGame() {
   const output = document.getElementById("output");
 
   if (!fileInput.files.length || !gradeInput.value) {
-    alert("Please upload a file and enter grade");
+    alert("Upload textbook image and enter grade");
     return;
   }
 
@@ -14,17 +14,17 @@ async function generateGame() {
   formData.append("file", fileInput.files[0]);
   formData.append("grade", gradeInput.value);
 
-  output.innerHTML = "⏳ Generating game...";
+  output.innerText = "⏳ Generating game...";
 
   try {
-    const res = await fetch(API_URL, {
+    const response = await fetch(API_URL, {
       method: "POST",
       body: formData
     });
 
-    const data = await res.json();
+    const data = await response.json();
     output.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-  } catch (err) {
-    output.innerHTML = "❌ Error connecting to AI server";
+  } catch {
+    output.innerText = "❌ Error generating game";
   }
 }
