@@ -1,47 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>AI Concept-to-Game Converter</title>
+  <title>AI Textbook to Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <!-- 🔁 NEW WRAPPER START -->
-  <div class="container">
-    <h1>🎮 AI Concept-to-Game Converter</h1>
 
-    <div class="card">
-      <div class="form">
-        <!-- ✅ YOUR EXISTING INPUTS (UNCHANGED) -->
-        <input id="subject" placeholder="Physics" />
-        <input id="concept" placeholder="Newton’s Laws" />
-        <input id="difficulty" placeholder="High School" />
-        <button onclick="generateGame()">Generate Game</button>
-      </div>
+<div class="container">
+  <h1>📘 Textbook → 🎮 Game</h1>
 
-      <!-- ✅ OUTPUT AREA -->
-      <div id="output" class="output-card"></div>
-    </div>
-  </div>
-  <!-- 🔁 NEW WRAPPER END -->
+  <input type="file" id="file">
+  <input type="number" id="grade" placeholder="Class (1–10)">
+  <button onclick="upload()">Generate Game</button>
 
-  <script src="script.js"></script>
+  <pre id="output"></pre>
+</div>
 
-  <footer class="footer">
-  <p>AI Concept-to-Game Converter</p>
-  <p>Version v1.0.0</p>
-  <p>
-    <a href="https://github.com/patilritesh2006/ai-concept-to-game-converter" target="_blank">
-      View on GitHub
-    </a>
-  </p>
-</footer>
-
-  
-  <p style="opacity:0.6; margin-top:20px; text-align:center;">
-  Version v1.0.0
-</p>
-
+<script src="game.js"></script>
 </body>
 </html>
