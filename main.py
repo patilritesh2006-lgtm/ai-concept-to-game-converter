@@ -14,3 +14,4 @@ async def generate_game_api(
     analysis = analyze_text(text, grade)
     game = generate_game(analysis)
     return game
+
