@@ -1,19 +1,30 @@
-async function upload() {
-  const file = document.getElementById("file").files[0];
-  const grade = document.getElementById("grade").value;
+const API_URL = "https://ai-concept-to-game-converter-2.onrender.com/generate-game";
+
+async function generateGame() {
+  const fileInput = document.getElementById("file");
+  const gradeInput = document.getElementById("grade");
+  const output = document.getElementById("output");
+
+  if (!fileInput.files.length || !gradeInput.value) {
+    alert("Please upload a file and enter grade");
+    return;
+  }
 
   const formData = new FormData();
-  formData.append("file", file);
-  formData.append("grade", grade);
+  formData.append("file", fileInput.files[0]);
+  formData.append("grade", gradeInput.value);
 
- const API_URL = "https://ai-concept-to-game-converter-2.onrender.com/generate-game";
+  output.innerHTML = "⏳ Generating game...";
 
- {
-    method: "POST",
-    body: formData
-  });
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      body: formData
+    });
 
-  const data = await res.json();
-  document.getElementById("output").innerText =
-    JSON.stringify(data, null, 2);
+    const data = await res.json();
+    output.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+  } catch (err) {
+    output.innerHTML = "❌ Error connecting to AI server";
+  }
 }
