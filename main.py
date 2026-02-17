@@ -1,30 +1,16 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from game_engine import build_game
+from fastapi import FastAPI, UploadFile, File, Form
+from text_extractor import extract_text_from_pdf
+from ai_analyzer import analyze_text
+from game_generator import generate_game
 
-app = FastAPI(title="AI Concept-to-Game Converter")
-
-# ✅ ADD THIS BLOCK (VERY IMPORTANT)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],   # allow GitHub Pages
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-class ConceptRequest(BaseModel):
-    subject: str
-    concept: str
-    difficulty: str
+app = FastAPI(title="AI Textbook to Game Generator")
 
 @app.post("/generate-game")
-def generate_game(data: ConceptRequest):
-    return {
-        "generated_game": build_game(
-            data.subject,
-            data.concept,
-            data.difficulty
-        )
-    }
+async def generate_game_api(
+    file: UploadFile = File(...),
+    grade: int = Form(...)
+):
+    text = extract_text_from_pdf(file)
+    analysis = analyze_text(text, grade)
+    game = generate_game(analysis)
+    return game
