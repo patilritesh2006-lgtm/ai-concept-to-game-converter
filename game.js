@@ -6,7 +6,8 @@ async function upload() {
   formData.append("file", file);
   formData.append("grade", grade);
 
-  const API_URL = "https://ai-concept-to-game-converter-2.onrender.com/generate-game";
+ const API_URL = "https://ai-concept-to-game-converter-2.onrender.com/generate-game";
+
  {
     method: "POST",
     body: formData
