@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>AI Textbook to Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -9,12 +10,26 @@
 <div class="container">
   <h1>📘 Textbook → 🎮 Game</h1>
 
-  <input type="file" id="file" />
-<input type="number" id="grade" placeholder="Grade (1–10)" />
-<button onclick="generateGame()">Generate Game</button>
+  <div class="card">
+    <div class="form">
+      <input type="file" id="file">
+      <input type="number" id="grade" placeholder="Grade (1–10)">
+      <button onclick="generateGame()">Generate Game</button>
+    </div>
 
-  <pre id="output"></pre>
+    <div id="output" class="output-card"></div>
+  </div>
 </div>
+
+<footer class="footer">
+  <p>AI Concept-to-Game Converter</p>
+  <p>Version v1.0.0</p>
+  <p>
+    <a href="https://github.com/patilritesh2006-lgtm/ai-concept-to-game-converter" target="_blank">
+      View on GitHub
+    </a>
+  </p>
+</footer>
 
 <script src="game.js"></script>
 </body>
