@@ -1,30 +1,43 @@
-const API_URL = "https://ai-concept-to-game-converter-2.onrender.com/generate-game";
+let score = 0;
 
-async function generateGame() {
-  const fileInput = document.getElementById("file");
-  const gradeInput = document.getElementById("grade");
-  const output = document.getElementById("output");
+function generateGame() {
+  score = 0;
+  document.getElementById("game").innerHTML = "Loading...";
 
-  if (!fileInput.files.length || !gradeInput.value) {
-    alert("Upload textbook image and enter grade");
-    return;
+  fetch("https://ai-concept-to-game-converter-1.onrender.com/generate-game", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      subject: document.getElementById("subject").value,
+      concept: document.getElementById("concept").value,
+      difficulty: document.getElementById("difficulty").value
+    })
+  })
+  .then(res => res.json())
+  .then(data => renderQuiz(data.generated_game.questions));
+}
+
+function renderQuiz(questions) {
+  let html = "";
+  questions.forEach((q, index) => {
+    html += `<div class="question">
+      <h3>${q.question}</h3>
+      ${q.options.map(opt =>
+        `<button onclick="checkAnswer('${opt}', '${q.answer}')">${opt}</button>`
+      ).join("")}
+    </div>`;
+  });
+
+  html += `<h2>Score: <span id="score">0</span></h2>`;
+  document.getElementById("game").innerHTML = html;
+}
+
+function checkAnswer(selected, correct) {
+  if (selected === correct) {
+    score += 10;
+    alert("✅ Correct!");
+  } else {
+    alert("❌ Wrong!");
   }
-
-  const formData = new FormData();
-  formData.append("file", fileInput.files[0]);
-  formData.append("grade", gradeInput.value);
-
-  output.innerText = "⏳ Generating game...";
-
-  try {
-    const response = await fetch(API_URL, {
-      method: "POST",
-      body: formData
-    });
-
-    const data = await response.json();
-    output.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-  } catch {
-    output.innerText = "❌ Error generating game";
-  }
+  document.getElementById("score").innerText = score;
 }
