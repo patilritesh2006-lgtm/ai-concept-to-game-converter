@@ -1,19 +1,28 @@
 from concept_analyzer import analyze_concept
 
 def build_game(subject, concept, difficulty):
-    analysis = analyze_concept(subject, concept, difficulty)
-
     return {
-        "game_type": analysis["recommended_game"],
-        "objective": analysis["learning_goal"],
-        "rules": [
-            "Answer challenges correctly",
-            "Match elements in correct order",
-            "Time-based scoring"
-        ],
-        "scoring_system": {
-            "correct": 10,
-            "incorrect": -5
-        }
+        "game_type": "quiz",
+        "questions": [
+            {
+                "question": f"What best explains {concept}?",
+                "options": [
+                    "It describes a basic scientific principle",
+                    "It is a random fact",
+                    "It has no real-world use",
+                    "It is only theoretical"
+                ],
+                "answer": "It describes a basic scientific principle"
+            },
+            {
+                "question": f"Where is {concept} commonly applied?",
+                "options": [
+                    "Daily life",
+                    "Only in laboratories",
+                    "Only in textbooks",
+                    "Nowhere"
+                ],
+                "answer": "Daily life"
+            }
+        ]
     }
-
