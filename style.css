@@ -1,5 +1,5 @@
 body {
-  background: #f4f6f9;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
   font-family: Arial, sans-serif;
   text-align: center;
 }
@@ -10,11 +10,20 @@ body {
   margin: 50px auto;
 }
 
+h1 {
+  font-size: 36px;
+}
+
+.subtitle {
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
+
 .card {
   background: white;
   padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
 }
 
 .form {
@@ -24,18 +33,21 @@ body {
   flex-wrap: wrap;
 }
 
-.form input {
-  padding: 12px;
-  border-radius: 10px;
+.form input,
+.form select {
+  padding: 14px;
+  border-radius: 12px;
   border: 1px solid #ccc;
+  min-width: 200px;
 }
 
 .form button {
-  padding: 12px 24px;
-  border-radius: 10px;
+  padding: 14px 30px;
+  border-radius: 14px;
   border: none;
   background: #2563eb;
   color: white;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -44,9 +56,9 @@ body {
 }
 
 .question button {
-  margin: 6px;
-  padding: 10px 20px;
-  border-radius: 8px;
+  margin: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
   border: none;
   background: #3b82f6;
   color: white;
