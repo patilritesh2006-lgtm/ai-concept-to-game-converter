@@ -2,35 +2,48 @@ let score = 0;
 
 function generateGame() {
   score = 0;
-  document.getElementById("game").innerHTML = "Loading game...";
+  document.getElementById("game").innerHTML = "<p>Loading game...</p>";
 
-  const selectedConcept = document.getElementById("concept").value;
-  const customConcept = document.getElementById("customConcept").value;
+  const concept =
+    document.getElementById("customConcept").value ||
+    document.getElementById("concept").value;
 
-  const concept = customConcept || selectedConcept;
+  const grade = document.getElementById("difficulty").value;
 
-  fetch("https://ai-concept-to-game-converter-1.onrender.com/generate-game", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      subject: "General",
-      concept: concept,
-      difficulty: document.getElementById("difficulty").value
-    })
-  })
-  .then(res => res.json())
-  .then(data => renderQuiz(data.generated_game.questions));
+  // 🔥 TEMP GAME LOGIC (HACKATHON SAFE)
+  const questions = generateDummyQuestions(concept, grade);
+
+  renderQuiz(questions);
+}
+
+function generateDummyQuestions(concept, grade) {
+  return [
+    {
+      question: `What is a basic idea of ${concept}?`,
+      options: ["Definition", "Story", "Song", "Poem"],
+      answer: "Definition"
+    },
+    {
+      question: `${concept} is mainly taught in which class?`,
+      options: [`Class ${grade}`, "College", "None", "Unknown"],
+      answer: `Class ${grade}`
+    }
+  ];
 }
 
 function renderQuiz(questions) {
-  let html = "";
-  questions.forEach(q => {
+  let html = `<h2>Quiz Game</h2>`;
+
+  questions.forEach((q, index) => {
     html += `
       <div class="question">
-        <h3>${q.question}</h3>
-        ${q.options.map(opt =>
-          `<button onclick="checkAnswer('${opt}', '${q.answer}')">${opt}</button>`
-        ).join("")}
+        <h3>${index + 1}. ${q.question}</h3>
+        ${q.options
+          .map(
+            opt =>
+              `<button onclick="checkAnswer('${opt}', '${q.answer}')">${opt}</button>`
+          )
+          .join("")}
       </div>
     `;
   });
@@ -44,7 +57,7 @@ function checkAnswer(selected, correct) {
     score += 10;
     alert("✅ Correct!");
   } else {
-    alert("❌ Try again!");
+    alert("❌ Wrong!");
   }
   document.getElementById("score").innerText = score;
 }
