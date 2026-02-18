@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AI Concept-to-Game Converter</title>
+  <title>Learn by Playing 🎮</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-  <h1>🎮 AI Concept-to-Game Converter</h1>
+  <h1>🎮 Learn by Playing</h1>
+  <p class="subtitle">Type or choose a topic and start a game instantly</p>
 
   <div class="card">
     <div class="form">
-      <input id="subject" placeholder="Subject">
-      <input id="concept" placeholder="Concept">
-      <input id="difficulty" placeholder="Class (1–10)">
-      <button onclick="generateGame()">Generate Game</button>
+      <select id="concept">
+        <option value="">Choose a topic</option>
+        <option value="Addition">Addition</option>
+        <option value="Fractions">Fractions</option>
+        <option value="Multiplication">Multiplication</option>
+        <option value="Photosynthesis">Photosynthesis</option>
+        <option value="Newton’s Laws of Motion">Newton’s Laws of Motion</option>
+        <option value="Human Digestive System">Human Digestive System</option>
+      </select>
+
+      <input id="customConcept" placeholder="Or type your own topic">
+
+      <select id="difficulty">
+        <option value="">Class</option>
+        <option value="1">Class 1</option>
+        <option value="2">Class 2</option>
+        <option value="3">Class 3</option>
+        <option value="4">Class 4</option>
+        <option value="5">Class 5</option>
+        <option value="6">Class 6</option>
+        <option value="7">Class 7</option>
+        <option value="8">Class 8</option>
+        <option value="9">Class 9</option>
+        <option value="10">Class 10</option>
+      </select>
+
+      <button onclick="generateGame()">▶️ Play Game</button>
     </div>
 
     <div id="game"></div>
@@ -23,7 +47,9 @@
   <footer class="footer">
     <p>AI Concept-to-Game Converter</p>
     <p>Version v1.0.0</p>
-    <a href="https://github.com/patilritesh2006-lgtm/ai-concept-to-game-converter" target="_blank">View on GitHub</a>
+    <a href="https://github.com/patilritesh2006-lgtm/ai-concept-to-game-converter" target="_blank">
+      View on GitHub
+    </a>
   </footer>
 </div>
 
