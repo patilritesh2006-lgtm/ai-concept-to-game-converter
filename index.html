@@ -8,22 +8,34 @@
 
 <div class="container">
   <h1>🎮 Learn by Playing</h1>
-  <p class="subtitle">Type or choose a topic and start a game instantly</p>
+  <p class="subtitle">Choose a topic and play instantly</p>
 
   <div class="card">
     <div class="form">
+
+      <!-- Topic dropdown -->
       <select id="concept">
-        <option value="">Choose a topic</option>
+        <option value="">Choose topic</option>
         <option value="Addition">Addition</option>
+        <option value="Subtraction">Subtraction</option>
         <option value="Fractions">Fractions</option>
         <option value="Multiplication">Multiplication</option>
         <option value="Photosynthesis">Photosynthesis</option>
-        <option value="Newton’s Laws of Motion">Newton’s Laws of Motion</option>
-        <option value="Human Digestive System">Human Digestive System</option>
+        <option value="Newton Laws">Newton’s Laws</option>
       </select>
 
-      <input id="customConcept" placeholder="Or type your own topic">
+      <!-- Middle input with suggestions -->
+      <input list="topicList" id="customConcept" placeholder="Or choose another topic">
+      <datalist id="topicList">
+        <option value="Division">
+        <option value="Decimals">
+        <option value="Algebra Basics">
+        <option value="Human Digestive System">
+        <option value="Electricity">
+        <option value="Solar System">
+      </datalist>
 
+      <!-- Class -->
       <select id="difficulty">
         <option value="">Class</option>
         <option value="1">Class 1</option>
@@ -38,7 +50,7 @@
         <option value="10">Class 10</option>
       </select>
 
-      <button onclick="generateGame()">▶️ Play Game</button>
+      <button onclick="generateGame()">▶ Play Game</button>
     </div>
 
     <div id="game"></div>
